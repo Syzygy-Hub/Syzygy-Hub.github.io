@@ -1,0 +1,490 @@
+/* Syzygy site. Brand palette from the Hub brand guide: purple #7F77DD, teal #1D9E75, coral #D85A30.
+   Each layer has its own colour: one deep and one light variant of each brand hue, so the six
+   colours are distinct. The site works without JavaScript. Motion is progressive enhancement and
+   is off under prefers-reduced-motion. */
+
+:root {
+  --purple: #7F77DD;
+  --teal: #1D9E75;
+  --coral: #D85A30;
+  --ink: #1f1d2b;
+  --muted: #5b5870;
+  --paper: #ffffff;
+  --surface: #f4f3fa;
+  --rule: #d9d7ea;
+  --link: #4f47b8;
+  --on-brand: #ffffff;
+  --brand-word: #111318;
+  --brand-tag: #5b5f68;
+  --on-base: #ffffff;
+  --on-foundation: #ffffff;
+  --on-core: #111018;
+  --on-services: #111018;
+  --on-ai: #111018;
+  --on-ui: #ffffff;
+  --font-heading: "Sora", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --radius: 14px;
+  /* Layer colours. Foundation, Core, Services, AI, UI and Base are all different. */
+  --c-foundation: #534AB7;
+  --c-core: #1D9E75;
+  --c-services: #D85A30;
+  --c-ai: #7F77DD;
+  --c-ui: #0F6E56;
+  --c-base: #993C1D;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #eceaf7;
+    --muted: #b7b3cc;
+    --paper: #13121a;
+    --surface: #1d1b28;
+    --rule: #37344d;
+    --link: #b3adf5;
+    --on-brand: #13121a;
+    --brand-word: #F5F5F7;
+    --brand-tag: #B4B8C2;
+    --on-base: #13121a;
+    --on-foundation: #13121a;
+    --on-core: #13121a;
+    --on-services: #13121a;
+    --on-ai: #13121a;
+    --on-ui: #13121a;
+    --c-foundation: #AFA9EC;
+    --c-core: #5DCAA5;
+    --c-services: #F0997B;
+    --c-ai: #7F77DD;
+    --c-ui: #1D9E75;
+    --c-base: #D85A30;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #eceaf7;
+  --muted: #b7b3cc;
+  --paper: #13121a;
+  --surface: #1d1b28;
+  --rule: #37344d;
+  --link: #b3adf5;
+  --on-brand: #13121a;
+  --brand-word: #F5F5F7;
+  --brand-tag: #B4B8C2;
+  --on-base: #13121a;
+  --on-foundation: #13121a;
+  --on-core: #13121a;
+  --on-services: #13121a;
+  --on-ai: #13121a;
+  --on-ui: #13121a;
+  --c-foundation: #AFA9EC;
+  --c-core: #5DCAA5;
+  --c-services: #F0997B;
+  --c-ai: #7F77DD;
+  --c-ui: #1D9E75;
+  --c-base: #D85A30;
+}
+
+.layer-foundation { --accent: var(--c-foundation); --accent-ink: var(--on-foundation); }
+.layer-core { --accent: var(--c-core); --accent-ink: var(--on-core); }
+.layer-services { --accent: var(--c-services); --accent-ink: var(--on-services); }
+.layer-ai { --accent: var(--c-ai); --accent-ink: var(--on-ai); }
+.layer-ui { --accent: var(--c-ui); --accent-ink: var(--on-ui); }
+.layer-base { --accent: var(--c-base); --accent-ink: var(--on-base); }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--font-body); }
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0 0 0.75rem; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 1rem; }
+h3 { font-size: 1.2rem; margin: 0 0 0.4rem; }
+p { margin: 0.75rem 0; }
+.lede { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--muted); max-width: 46rem; }
+.wrap { width: min(72rem, 100% - 2.5rem); margin: 0 auto; }
+
+/* Header and scroll progress */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1.5rem;
+  padding: 0.9rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.brand { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; color: var(--ink); }
+.brand span { font-family: var(--font-heading); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.014em; line-height: 1; color: var(--brand-word); }
+.site-header nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem 1.1rem; margin: 0; padding: 0; }
+.site-header nav a { text-decoration: none; padding: 0.2rem 0; border-bottom: 2px solid transparent; }
+.site-header nav a[aria-current="page"] { border-bottom-color: var(--coral); }
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--teal), var(--coral));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+/* Hero: three soft glows in the logo ring colours (the same values as the intro's glows), so the
+   intro settles into the hero. Each drifts on its own path and loop length (23 s, 29 s, 37 s), with
+   a gentle change in scale and opacity, so they never move in step. Every loop ends where it
+   starts, so it repeats with no jump. Only transform and opacity are animated; the blur is a
+   static filter. site.js pauses them off screen and in a hidden tab (.glows-paused). Under reduced
+   motion they stay still in the arrangement below. */
+:root {
+  --ring-purple: #7C6CF0;
+  --ring-teal: #2FB99B;
+  --ring-coral: #FF7A5C;
+  --glow-strength: 26%;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --glow-strength: 30%; }
+}
+:root[data-theme="dark"] { --glow-strength: 30%; }
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: min(86vh, 48rem);
+  display: flex;
+  align-items: center;
+  padding: 3rem 0;
+}
+.hero-glows { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.hero-glow {
+  position: absolute;
+  width: clamp(280px, 44vw, 640px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--glow-color) var(--glow-strength), transparent), transparent);
+  filter: blur(40px);
+  will-change: transform, opacity;
+  animation: var(--glow-path) var(--glow-loop) ease-in-out infinite;
+}
+.glow-1 { --glow-color: var(--ring-purple); --glow-path: hero-glow-1; --glow-loop: 29s; left: -10%; top: -20%; opacity: 0.85; }
+.glow-2 { --glow-color: var(--ring-teal); --glow-path: hero-glow-2; --glow-loop: 37s; right: -12%; bottom: -24%; opacity: 0.9; }
+.glow-3 { --glow-color: var(--ring-coral); --glow-path: hero-glow-3; --glow-loop: 23s; left: 46%; top: -30%; opacity: 1; }
+.hero.glows-paused .hero-glow { animation-play-state: paused; }
+@keyframes hero-glow-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+  25% { transform: translate3d(72%, 42%, 0) scale(1.2); opacity: 1; }
+  50% { transform: translate3d(108%, -18%, 0) scale(0.9); opacity: 0.6; }
+  75% { transform: translate3d(30%, -48%, 0) scale(1.1); opacity: 0.85; }
+}
+@keyframes hero-glow-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+  25% { transform: translate3d(-54%, -30%, 0) scale(1.15); opacity: 0.7; }
+  50% { transform: translate3d(-90%, 30%, 0) scale(1.2); opacity: 1; }
+  75% { transform: translate3d(-30%, 48%, 0) scale(0.9); opacity: 0.75; }
+}
+@keyframes hero-glow-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); opacity: 1; }
+  33% { transform: translate3d(-72%, 48%, 0) scale(1.2); opacity: 0.6; }
+  66% { transform: translate3d(48%, 72%, 0) scale(1); opacity: 0.9; }
+}
+.hero-inner { position: relative; z-index: 1; text-align: left; }
+.hero-mark { display: block; width: clamp(72px, 11vw, 112px); height: auto; margin: 0 0 1.25rem; }
+.hero .promise { font-size: clamp(1.25rem, 2.6vw, 1.7rem); font-family: var(--font-body); font-weight: 500; max-width: 40rem; margin: 0 0 1.75rem; }
+.hero-sub { font-family: var(--font-heading); font-weight: 500; font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.35; color: var(--brand-tag); margin: 0 0 1rem; }
+.cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.button {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.75rem 1.4rem;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.button.primary { background: var(--c-base); color: var(--on-base); }
+.button.secondary { border-color: var(--purple); color: var(--link); }
+.button:hover, .button:focus-visible { transform: translateY(-2px); }
+
+/* Full-width bands with alternating surfaces */
+.band { padding: clamp(3rem, 7vw, 5.5rem) 0; }
+.band-alt { background: var(--surface); }
+
+/* Layer stack visual: each block takes its layer's colour */
+.stack { display: grid; gap: 0.9rem; margin-top: 2rem; }
+.stack-block {
+  display: block;
+  text-decoration: none;
+  color: var(--accent-ink, var(--on-brand));
+  background: var(--accent);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  transition: transform 0.25s ease;
+}
+.stack-block strong { display: block; font-family: var(--font-heading); font-size: 1.15rem; }
+.stack-block span { font-size: 0.95rem; opacity: 0.95; }
+.stack-peers { display: grid; gap: 0.9rem; grid-template-columns: repeat(4, 1fr); }
+.stack-block:hover, .stack-block:focus-visible { transform: translateY(-3px); }
+
+/* Platform row: four items, equal columns, so the gaps are equal across the full width */
+.platform-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; list-style: none; padding: 0; margin: 1.25rem 0; }
+.platform-row li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1.2rem 0.6rem;
+}
+.p-icon svg { display: block; width: 40px; height: 40px; color: var(--link); }
+.p-name { font-family: var(--font-heading); font-weight: 700; }
+
+/* Cards. Neutral by default: a plain surface and a thin rule. The gradient border and the lift
+   appear only on hover and focus. The layer colour is a dot in the heading, not a border. */
+.card-grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(3, 1fr); margin: 1rem 0; }
+.card-grid--pair { grid-template-columns: repeat(2, 1fr); }
+.layer-card, .doc-card {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.25rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.layer-card h3 { margin-top: 0; }
+.layer-card h3::before {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.55rem;
+  border-radius: 50%;
+  background: var(--accent, var(--rule));
+  vertical-align: 0.05em;
+}
+.layer-card p { margin: 0.35rem 0; font-size: 0.95rem; }
+.layer-card .meta { color: var(--muted); font-size: 0.85rem; }
+.layer-card .repo { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; word-break: break-all; }
+.layer-card:hover,
+.layer-card:focus-visible,
+.layer-card:focus-within,
+.doc-card:hover,
+.doc-card:focus-visible {
+  border-color: transparent;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box,
+              linear-gradient(135deg, var(--purple), var(--teal), var(--coral)) border-box;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(31, 29, 43, 0.14);
+}
+/* Docs page: one card per Hub document. Surface, hover and focus match the layer cards. */
+.doc-grid { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); }
+.doc-grid li { margin: 0; }
+main .doc-card { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; min-height: 4.5rem; font-family: var(--font-heading); font-weight: 600; font-size: 1rem; line-height: 1.3; }
+main .doc-card::after { content: none; }
+.doc-card .doc-arrow { color: var(--link); font-weight: 700; transition: transform 0.25s ease; }
+.doc-card:hover .doc-arrow,
+.doc-card:focus-visible .doc-arrow { transform: translateX(3px); }
+
+/* Layers page cards: a cover link makes the whole card a tap target for the Ecosystem section.
+   The layer name stays a link to the layer page, and it sits above the cover. */
+.card-cover { position: absolute; inset: 0; border-radius: inherit; z-index: 0; }
+.card-cover:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; }
+.layer-card h3 a.layer-title { position: relative; z-index: 1; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Ecosystem layer sections: clear the sticky header when the page scrolls to #ecosystem-<layer> */
+section[id^="ecosystem-"] { scroll-margin-top: 5.5rem; } /* header is 62px tall on desktop */
+@media (max-width: 600px) {
+  section[id^="ecosystem-"] { scroll-margin-top: 9rem; } /* header is 126px tall on phones */
+}
+
+/* Layer name links on the Layers page: the heading keeps its look; a colour underline grows on hover */
+.layer-title {
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent, var(--link)), var(--accent, var(--link)));
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  padding-bottom: 2px;
+  transition: background-size 0.25s ease;
+}
+.layer-title:hover, .layer-title:focus-visible { background-size: 100% 2px; }
+.layer-heading::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 4px;
+  margin-top: 0.7rem;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* Lists, tables, text links */
+.doc-list { padding-left: 0; list-style: none; }
+.doc-list li { margin: 0.5rem 0; }
+main p > a, main li > a, main td > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.12rem 0.7rem;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+main p > a::after, main li > a::after, main td > a::after { content: "→"; font-weight: 700; }
+main p > a:hover, main li > a:hover, main td > a:hover { border-color: var(--link); }
+.table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 32rem; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; vertical-align: middle; padding: 0.9rem 1rem; }
+td {
+  background-image: linear-gradient(90deg, transparent, var(--rule) 10%, var(--rule) 90%, transparent);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: bottom;
+  transition: background-color 0.2s ease;
+}
+tbody tr:hover td { background-color: var(--surface); }
+th {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  padding: 0.8rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+main td > a { white-space: nowrap; }
+.pill {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
+.note { background: var(--paper); border-left: 4px solid var(--teal); padding: 0.7rem 1rem; border-radius: 6px; font-size: 0.95rem; }
+.neighbours { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+
+/* Entrance motion: only when JavaScript runs (class js) and motion is allowed */
+.reveal { transition: opacity 0.6s ease, transform 0.6s ease; transition-delay: var(--delay, 0ms); }
+.js .reveal:not(.is-visible) { opacity: 0; transform: translateY(16px); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--rule); padding: 1.25rem clamp(1rem, 4vw, 2.5rem); min-height: 5.5rem; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); font-size: 0.92rem; }
+.site-footer p { margin: 0; }
+
+@media (max-width: 900px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+  .stack-peers { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .card-grid, .card-grid--pair, .stack-peers { grid-template-columns: 1fr; }
+  .platform-row { grid-template-columns: repeat(2, 1fr); }
+  .hero { min-height: auto; padding: 2rem 0; }
+}
+
+/* Reduced motion: still hero glows, no entrance motion, no transitions, no smooth scroll, plain
+   progress bar. The hero glows stay in their fixed arrangement. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-glow { animation: none; }
+  .reveal,
+  .layer-card,
+  .doc-card,
+  .stack-block,
+  .button,
+  .layer-title,
+  main p > a, main li > a, main td > a { transition: none !important; }
+  .js .reveal:not(.is-visible) { opacity: 1; transform: none; }
+  .reveal.is-visible { transform: none; }
+  .layer-card:hover,
+  .layer-card:focus-visible,
+  .layer-card:focus-within,
+  .doc-card:hover,
+  .doc-card:focus-visible,
+  .stack-block:hover,
+  .stack-block:focus-visible,
+  .button:hover,
+  .button:focus-visible { transform: none; }
+  .layer-title:hover, .layer-title:focus-visible { background-size: 0% 2px; }
+  .scroll-progress { background: var(--teal); transition: none; }
+}
+
+/* ---- Home intro overlay ----
+   Hidden unless site.js sets html.intro-pending (home page, first load of the session, motion
+   allowed, JavaScript on). The header and page stay in the DOM underneath; they are only
+   transparent while the overlay plays, so removing it causes no layout shift. Only transform,
+   opacity and filter are animated (in site.js, with the Web Animations API). */
+.intro { display: none; }
+html.intro-pending .intro { display: block; position: fixed; inset: 0; z-index: 100; }
+html.intro-pending .site-header,
+html.intro-pending .site-footer,
+html.intro-pending main > :not(.intro) { opacity: 0; }
+main > :not(.intro), .site-footer { transition: opacity 0.5s ease; }
+.intro-bg { position: absolute; inset: 0; background: var(--paper); }
+.intro-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 0 1rem; }
+.intro-group { display: flex; align-items: center; gap: clamp(0.9rem, 2.5vw, 1.5rem); max-width: 100%; }
+.intro-logo-wrap, .intro-word-wrap { transform-origin: 0 0; }
+.intro-word-wrap { align-self: flex-start; width: max-content; }
+.intro-logo { position: relative; width: clamp(101px, 18.4vw, 184px); aspect-ratio: 1; }
+.intro-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; opacity: 0; }
+.intro-text { display: flex; flex-direction: column; min-width: 0; }
+.intro-word {
+  display: block;
+  width: max-content;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  letter-spacing: -0.014em;
+  line-height: 1;
+  color: var(--brand-word);
+  opacity: 0;
+}
+.intro-tag {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+  line-height: 1.35;
+  color: var(--brand-tag);
+  margin-top: 0.6rem;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro, html.intro-pending .intro { display: none; }
+  html.intro-pending .site-header,
+  html.intro-pending .site-footer,
+  html.intro-pending main > :not(.intro) { opacity: 1; }
+}
